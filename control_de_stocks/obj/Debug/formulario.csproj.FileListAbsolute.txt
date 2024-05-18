@@ -1,0 +1,44 @@
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\control_de_stocks.exe.config
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\control_de_stocks.exe
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\control_de_stocks.pdb
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\dominio.dll
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\dominio.pdb
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\formulario.csproj.AssemblyReference.cache
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\control_de_stocks.frmGestor.resources
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\control_de_stocks.Properties.Resources.resources
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\formulario.csproj.GenerateResource.cache
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\formulario.csproj.CoreCompileInputs.cache
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\formulario.csproj.CopyComplete
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\control_de_stocks.exe
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\control_de_stocks.pdb
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\negocio.dll
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\negocio.pdb
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\control_de_stocks.FormAlta.resources
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\control_de_stocks.FormDetalle.resources
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\control_de_stocks.FormDeudores.resources
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\obj\Debug\control_de_stocks.FormAltaDeudor.resources
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\itextsharp.dll
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\control_de_stocks\bin\Debug\itextsharp.xml
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\control_de_stocks.exe.config
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\control_de_stocks.exe
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\control_de_stocks.pdb
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\dominio.dll
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\itextsharp.dll
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\negocio.dll
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\dominio.pdb
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\negocio.pdb
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\bin\Debug\itextsharp.xml
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\formulario.csproj.AssemblyReference.cache
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\control_de_stocks.frmGestor.resources
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\control_de_stocks.FormAlta.resources
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\control_de_stocks.FormAltaDeudor.resources
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\control_de_stocks.FormDetalle.resources
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\control_de_stocks.FormDeudores.resources
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\control_de_stocks.Properties.Resources.resources
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\formulario.csproj.GenerateResource.cache
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\formulario.csproj.CoreCompileInputs.cache
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\formulario.csproj.CopyComplete
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\control_de_stocks.exe
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\control_de_stocks\obj\Debug\control_de_stocks.pdb
