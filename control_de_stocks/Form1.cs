@@ -17,6 +17,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.tool.xml;
 using System.IO;
 using System.Diagnostics;
+using System.Threading;
 
 namespace control_de_stocks
 {
@@ -86,6 +87,26 @@ namespace control_de_stocks
                 pcxArticulo.Load("https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg");
             }
 
+        }
+
+        //REPITO 2 LISTAS IGUALES CORREGIR
+        AutoCompleteStringCollection AutoCompleteVenta = new AutoCompleteStringCollection();
+        List<string> listaSugerencias = new List<string>();
+        private void cargarAutocompletables() {
+           
+
+            foreach (Articulo articulo in articulos)
+            {
+                AutoCompleteVenta.Add(articulo.nombre);
+                listaSugerencias.Add(articulo.nombre);
+            }
+
+            txtNombreVenta.AutoCompleteCustomSource = AutoCompleteVenta;
+            
+           
+            
+            txtNombreVenta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            txtNombreVenta.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
         private void cargarGrillaDeArticulos()
         {
@@ -166,7 +187,7 @@ namespace control_de_stocks
         {
 
             cargarGrillaDeArticulos();
-
+            cargarAutocompletables();
             //AGREGAR LOS ITEMS DE LOS DESPLEGABLES
             cboCampo.Items.Add("Nombre");
             cboCampo.Items.Add("Marcas");
@@ -425,39 +446,16 @@ namespace control_de_stocks
             }
           
         }
-        //con este EVENTO RECUPERO EL CONTENIDO DE MI CELDA ACTUAL ANTES DE EDITARLO
-        private void dgvArticulosVenta_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            numeroColumna = e.ColumnIndex;
-            numeroFila = e.RowIndex;
-            
-            //variable se repite varias veces para dgvVentas...modificar y simplificar
-            celdaActualVenta = dgvArticulosVenta.Rows[numeroFila].Cells[numeroColumna];
-
-            if (celdaActualVenta.Value != null)
-            {
-                int numeroFilaActual = dgvArticulosVenta.CurrentRow.Index;
-                //recupero el contenido(string formato moneda)de mi celda actual(por defecto estan en string)
-                string saldo = dgvArticulosVenta.Rows[numeroFilaActual].Cells["importe"].Value.ToString();
-                //transformo el string en formato moneda a numeero (de tipo double)
-                importeAntiguo = pesosANumeros(saldo);
-
-            }
-            else {
-                importeAntiguo = 0;
-            }
-           
-            
-        }
+      
      
 
-        private void dgvArticulosVenta_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+         private void dgvArticulosVenta_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             //ver si se puede simplificar porque esas 4 varibles se repiten en eñ evento "CELLBEING_EDIT"
             flag_cell_edited = true;
             numeroColumna = e.ColumnIndex;//actual
             numeroFila = e.RowIndex;
-          
+         
             celdaActualVenta = dgvArticulosVenta.Rows[numeroFila].Cells[numeroColumna];
 
             Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
@@ -564,12 +562,162 @@ namespace control_de_stocks
             }
            
         }
+        //con este EVENTO RECUPERO EL CONTENIDO DE MI CELDA ACTUAL ANTES DE EDITARLO
 
+        private void dgvArticulosVenta_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+
+            numeroColumna = e.ColumnIndex;
+            numeroFila = e.RowIndex;
+
+            //variable se repite varias veces para dgvVentas...modificar y simplificar
+            celdaActualVenta = dgvArticulosVenta.Rows[numeroFila].Cells[numeroColumna];
+            if (numeroColumna == 2)
+            {
+                if (dgvArticulosVenta.Rows[numeroFila].Cells["importe"].Value != null)
+                {
+                    int numeroFilaActual = dgvArticulosVenta.CurrentRow.Index;
+                    //recupero el contenido(string formato moneda)de mi celda actual(por defecto estan en string)
+                    string saldo = dgvArticulosVenta.Rows[numeroFilaActual].Cells["importe"].Value.ToString();
+                    //transformo el string en formato moneda a numeero (de tipo double)
+                    importeAntiguo = pesosANumeros(saldo);
+
+                }
+                else
+                {
+                    importeAntiguo = 0;
+                }
+            }
+
+        }
+
+        //Metodo que  te devuelve el control o la celda qeu vas a editar
+       
+        
+           
+
+    private void dgvArticulosVenta_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+
+            var dataGridView = sender as DataGridView;
+
+
+
+
+            if (e.Control is DataGridViewTextBoxEditingControl && dataGridView.CurrentCell.ColumnIndex == 1)
+            {
+
+                //CASTEO el control o celda a un TextBox y le seteo la lista "AutoCompleteVenta" al "e.Control"
+
+                //se duplican los datos al agregar a la lista, corregirrr!!! (ya sea agregando un boton que limpie mis sugerencias)
+
+               ((TextBox)e.Control).AutoCompleteCustomSource.AddRange(listaSugerencias.ToArray());//CON ESTO ME FUNCIONO EL "LAG"..CORREGIR DECISION DE COLUMNAS, AHORA SI DEBERIA PODER USAR LA COLUMNA 1 SIN LAG---> HACER ESTA TAREA
+
+                ((TextBox)e.Control).AutoCompleteMode = AutoCompleteMode.Suggest;
+                ((TextBox)e.Control).AutoCompleteSource = AutoCompleteSource.CustomSource;
+              
+
+
+
+            }
+            else
+            {
+
+                ((TextBox)e.Control).AutoCompleteMode = AutoCompleteMode.None;
+                ((TextBox)e.Control).AutoCompleteSource = AutoCompleteSource.None;
+
+            }
+            
+               
+            
+           
+
+
+
+
+
+        }
+
+        private void btnImprimirLista_Click(object sender, EventArgs e)
+        {
+            //CREACION DEL ARCHIVO (con nombre y extencion)
+            SaveFileDialog guardarArchivo = new SaveFileDialog();
+            guardarArchivo.Filter = "|*.pdf|*.txt|";//falta como cambiar la extension que quiero
+            guardarArchivo.FileName = txtClienteVenta.Text + "-" + DateTime.Now.ToString("dd-MM-yyyy");
+
+            //string ruta = @"C:\Users\Joel\Desktop\gh\ort\oem";
+            // string rutaCompleta = Path.Combine(ruta, guardarArchivo.FileName);
+
+
+
+
+            //ESCRIBIENDO PDF CON HTML
+            //(linea 498)convierto nuestra pagina Html en una cadena de texto para "escribirlo" en el pdf
+            string paginaHtml_texto = Properties.Resources.listaPrecio.ToString();
+
+            //MODELO MI HTML REEMPLAZANDO SUS VALORES CON LOS DE MI FORMULARIO------- 
+            paginaHtml_texto = paginaHtml_texto.Replace("@CLIENTE", txtClienteVenta.Text);
+            //  PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOCUMENTO", txt.Text);
+            paginaHtml_texto = paginaHtml_texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            string filas = string.Empty;
+
+            foreach (DataGridViewRow row in dgvArticulos.Rows)
+            {
+                if (row.Index < dgvArticulos.Rows.Count - 1)
+                {
+                    filas += "<tr>";
+                    filas += "<td>" + row.Cells["nombre"].Value.ToString() + "</td>";
+                    filas += "<td>" + row.Cells["precioxmenor"].Value.ToString() + "</td>";
+                    filas += "<td>" + row.Cells["precioMenor"].Value.ToString() + "</td>";
+                    //filas += "<td>" + row.Cells["Importe"].Value.ToString() + "</td>";
+                    filas += "</tr>";
+                    //total += decimal.Parse(row.Cells["Importe"].Value.ToString());
+                }
+            }
+            paginaHtml_texto = paginaHtml_texto.Replace("@FILAS", filas);
             
 
 
+            //-----------------------------------------------------------------
+            if (guardarArchivo.ShowDialog() == DialogResult.OK)
+            {
+                //Documentar--
+                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
+                {
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+
+                    pdfDoc.Open();
+
+                    //pdfDoc.Add(new Phrase("HOLAAA MUNDO")); agrego contenido y escribo un pdf
+
+
+                    using (StringReader sr = new StringReader(paginaHtml_texto))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+
+                    pdfDoc.Close();
+
+                    stream.Close();
+                }
+
+
+                Process.Start(guardarArchivo.FileName);//abre el pdf automaticamente una vez guardado
+
+                //// Esperar 3 segundoS para que el visor de PDF se abra completamente
+                System.Threading.Thread.Sleep(1000);
+
+                // Enviar el comando de impresión al visor de PDF
+                SendKeys.Send("^p");// ^p es el atajo de teclado para imprimir en la mayoría de los visores de PDF
+            }
+
+        }
     }
 }
+
 
         /*  private bool esColumnaEditable() {
 bool puedeEditar = false;

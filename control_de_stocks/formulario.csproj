@@ -136,5 +136,8 @@
   <ItemGroup>
     <None Include="Resources\index.html" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\listaPrecio.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

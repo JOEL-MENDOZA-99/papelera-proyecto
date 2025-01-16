@@ -29,8 +29,8 @@ namespace control_de_stocks
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -64,6 +64,7 @@ namespace control_de_stocks
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnImprimirLista = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcxArticulo)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -75,23 +76,23 @@ namespace control_de_stocks
             // 
             this.dgvArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvArticulos.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Sitka Small", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Sitka Small", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dgvArticulos.Location = new System.Drawing.Point(131, 112);
             this.dgvArticulos.MultiSelect = false;
@@ -259,7 +260,7 @@ namespace control_de_stocks
             this.deudoresToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1324, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1324, 30);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -269,7 +270,7 @@ namespace control_de_stocks
             this.proveedoresToolStripMenuItem.Checked = true;
             this.proveedoresToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(105, 24);
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(105, 26);
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
             this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
@@ -277,7 +278,7 @@ namespace control_de_stocks
             // 
             this.deudoresToolStripMenuItem.BackColor = System.Drawing.SystemColors.Window;
             this.deudoresToolStripMenuItem.Name = "deudoresToolStripMenuItem";
-            this.deudoresToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
+            this.deudoresToolStripMenuItem.Size = new System.Drawing.Size(87, 26);
             this.deudoresToolStripMenuItem.Text = "Deudores";
             this.deudoresToolStripMenuItem.Click += new System.EventHandler(this.deudoresToolStripMenuItem_Click);
             // 
@@ -360,6 +361,7 @@ namespace control_de_stocks
             this.dgvArticulosVenta.TabIndex = 7;
             this.dgvArticulosVenta.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvArticulosVenta_CellBeginEdit);
             this.dgvArticulosVenta.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosVenta_CellEndEdit);
+            this.dgvArticulosVenta.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvArticulosVenta_EditingControlShowing);
             // 
             // txtPrecioVenta
             // 
@@ -379,6 +381,8 @@ namespace control_de_stocks
             // 
             // txtNombreVenta
             // 
+            this.txtNombreVenta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtNombreVenta.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtNombreVenta.Location = new System.Drawing.Point(318, 122);
             this.txtNombreVenta.Name = "txtNombreVenta";
             this.txtNombreVenta.Size = new System.Drawing.Size(255, 22);
@@ -418,11 +422,22 @@ namespace control_de_stocks
             this.label5.TabIndex = 0;
             this.label5.Text = "Nombre Cliente :";
             // 
+            // btnImprimirLista
+            // 
+            this.btnImprimirLista.Location = new System.Drawing.Point(590, 68);
+            this.btnImprimirLista.Name = "btnImprimirLista";
+            this.btnImprimirLista.Size = new System.Drawing.Size(140, 30);
+            this.btnImprimirLista.TabIndex = 20;
+            this.btnImprimirLista.Text = "Imprimir Lista";
+            this.btnImprimirLista.UseVisualStyleBackColor = true;
+            this.btnImprimirLista.Click += new System.EventHandler(this.btnImprimirLista_Click);
+            // 
             // frmGestor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 1025);
+            this.Controls.Add(this.btnImprimirLista);
             this.Controls.Add(this.grbVenta);
             this.Controls.Add(this.dgvArticulos);
             this.Controls.Add(this.txtBucadorRapido);
@@ -492,6 +507,7 @@ namespace control_de_stocks
         private System.Windows.Forms.Button btnAgregarVenta;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnImprimirLista;
     }
 }
 
