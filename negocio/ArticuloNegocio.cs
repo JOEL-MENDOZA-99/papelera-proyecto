@@ -33,16 +33,26 @@ namespace negocio
             aux.marca.descripcion = (String)datos.Lector["Marca"];
 
             aux.precioxmenor = (double)datos.Lector["PrecioXMenor"];
-            aux.precioxmayor = (double)datos.Lector["PrecioXMayor"];
-
-            aux.cantidadxmayor = (String)datos.Lector["CantidadXMayor"];
+           
+           
             aux.cantidadxmenor = (String)datos.Lector["CantidadXMenor"];
+
+           //la cantidad lo casteamos como double para setearle a precioxmayor su valor
+            aux.cantidadxmayor = (String)datos.Lector["CantidadXMayor"];
+            double numeroCantidadMayor = Convert.ToDouble(aux.cantidadxmayor);
+            aux.precioxcaja = (double)datos.Lector["PrecioXCaja"];
+
+            if (numeroCantidadMayor != 0)
+                aux.precioxmayor = aux.precioxcaja / numeroCantidadMayor;
+            else
+                aux.precioxmayor = 0;
+
 
             //transformar numeros en tipo moneda y mostrarlo en el form
             aux.precioMenor = aux.precioxmenor.ToString("C0", new System.Globalization.CultureInfo("en-US"));
             aux.precioMayor = aux.precioxmayor.ToString("C0", new System.Globalization.CultureInfo("en-US"));
+            aux.precioCaja = aux.precioxcaja.ToString("C0", new System.Globalization.CultureInfo("en-US"));
 
-       
             return aux;
         }
         public List<Articulo> listar()
@@ -52,7 +62,7 @@ namespace negocio
             try
             {
 
-                datos.setearConsulta("SELECT a.Id,a.IdMarca,a.IdCategoria,a.Codigo,a.Nombre,a.Descripcion,a.ImagenUrl ,c.Descripcion Categoria,m.Descripcion Marca,a.PrecioXMenor,a.PrecioXMayor,a.CantidadXMenor,a.CantidadXMayor FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id;");
+                datos.setearConsulta("SELECT a.Id,a.IdMarca,a.IdCategoria,a.Codigo,a.Nombre,a.Descripcion,a.ImagenUrl ,c.Descripcion Categoria,m.Descripcion Marca,a.PrecioXMenor,a.PrecioXMayor,a.CantidadXMenor,a.CantidadXMayor,a.PrecioXCaja FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id;");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())//getLector del objeto "datos"
@@ -78,7 +88,7 @@ namespace negocio
           
             try
             {
-                datos.setearConsulta("INSERT INTO ARTICULOS(Codigo,Descripcion,Nombre,IdCategoria,IdMarca,ImagenUrl,PrecioXMayor,PrecioXMenor,CantidadXMenor,CantidadXMayor) VALUES(@cod,@des,@nom,@idC,@idM,@url,@precio,@precioMenor,@cantMenor,@cantMayor)");
+                datos.setearConsulta("INSERT INTO ARTICULOS(Codigo,Descripcion,Nombre,IdCategoria,IdMarca,ImagenUrl,PrecioXMayor,PrecioXMenor,CantidadXMenor,CantidadXMayor,PrecioXCaja) VALUES(@cod,@des,@nom,@idC,@idM,@url,@precio,@precioMenor,@cantMenor,@cantMayor,@precioCaja)");
                 datos.setearParametro("@cod", nuevo.codigo);
                 datos.setearParametro("@des", nuevo.descripcion);
                 datos.setearParametro("@nom", nuevo.nombre);
@@ -87,6 +97,7 @@ namespace negocio
                 datos.setearParametro("@url", nuevo.urlImage);
                 datos.setearParametro("@precio", nuevo.precioxmayor);
                 datos.setearParametro("@precioMenor", nuevo.precioxmenor);
+                datos.setearParametro("@precioCaja", nuevo.precioxcaja);
                 datos.setearParametro("@cantMenor", nuevo.cantidadxmenor);
                 datos.setearParametro("@cantMayor", nuevo.cantidadxmayor);
                 datos.ejecutarAccion();
@@ -105,7 +116,7 @@ namespace negocio
            
             try
             {
-                datos.setearConsulta("update ARTICULOS set Codigo = @cod,Descripcion = @des,Nombre=@nom,IdCategoria=@idC,IdMarca=@idM,ImagenUrl=@url,PrecioXMayor=@precio,PrecioXMenor=@precioMenor,CantidadXMayor=@cantMayor,CantidadXMenor = @cantMenor where id=" + ar.id + "");//vamos agregar el "tipo" de una forma y la "debilidad" de otra
+                datos.setearConsulta("update ARTICULOS set Codigo = @cod,Descripcion = @des,Nombre=@nom,IdCategoria=@idC,IdMarca=@idM,ImagenUrl=@url,PrecioXMayor=@precio,PrecioXMenor=@precioMenor,CantidadXMayor=@cantMayor,CantidadXMenor = @cantMenor, PrecioXCaja=@precioCaja where id=" + ar.id + "");//vamos agregar el "tipo" de una forma y la "debilidad" de otra
                 datos.setearParametro("@cod", ar.codigo);
                 datos.setearParametro("@des", ar.descripcion);
                 datos.setearParametro("@nom", ar.nombre);
@@ -114,6 +125,7 @@ namespace negocio
                 datos.setearParametro("@url", ar.urlImage);
                 datos.setearParametro("@precio", ar.precioxmayor);
                 datos.setearParametro("@precioMenor", ar.precioxmenor);
+                datos.setearParametro("@precioCaja", ar.precioxcaja);
                 datos.setearParametro("@cantMenor", ar.cantidadxmenor);
                 datos.setearParametro("@cantMayor", ar.cantidadxmayor);
                 datos.ejecutarAccion();
@@ -151,7 +163,7 @@ namespace negocio
 
             try
             {
-                string consulta = "SELECT a.Id,a.IdMarca,a.IdCategoria,a.Codigo,a.Nombre,a.Descripcion,a.ImagenUrl ,c.Descripcion Categoria,m.Descripcion Marca,a.PrecioXMenor,a.PrecioXMayor,a.CantidadXMenor,a.CantidadXMayor FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id where ";
+                string consulta = "SELECT a.Id,a.IdMarca,a.IdCategoria,a.Codigo,a.Nombre,a.Descripcion,a.ImagenUrl ,c.Descripcion Categoria,m.Descripcion Marca,a.PrecioXMenor,a.PrecioXMayor,a.CantidadXMenor,a.CantidadXMayor, a.PrecioXCaja FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id where ";
 
                 consulta += "a.Nombre like '%" + filtro + "%'";
 

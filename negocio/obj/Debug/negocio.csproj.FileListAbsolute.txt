@@ -7,3 +7,12 @@ C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\negocio\obj\Debug\negocio.cspro
 C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\negocio\obj\Debug\negocio.csproj.CopyComplete
 C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\negocio\obj\Debug\negocio.dll
 C:\Users\Joel\source\repos\TPFinalNivel2_Mendoza\negocio\obj\Debug\negocio.pdb
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\bin\Debug\negocio.dll
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\bin\Debug\negocio.pdb
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\bin\Debug\dominio.dll
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\bin\Debug\dominio.pdb
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\obj\Debug\negocio.csproj.AssemblyReference.cache
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\obj\Debug\negocio.csproj.CoreCompileInputs.cache
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\obj\Debug\negocio.csproj.CopyComplete
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\obj\Debug\negocio.dll
+C:\Users\Joel\Desktop\PAPELERA PROGRAMA\negocio\obj\Debug\negocio.pdb

@@ -114,6 +114,9 @@ namespace control_de_stocks
             try
             {
                 articulos = negocioArt.listar();
+                //ordena los objetos por categoria
+                articulos.Sort();
+
                 dgvArticulos.DataSource = articulos;
                 //MessageBox.Show(dgvArticulos.Rows[0].Cells[2].Value.ToString()); OBTENER UNA CELDA DEL DATAGRIDVIEW
                 //double i = 123.25;
@@ -129,17 +132,20 @@ namespace control_de_stocks
         private void ocultarYRestringirColumnas()
         {
             //OCULTO COLUMNAS
+            if(dgvArticulos.Columns["urlImage"] != null)
             dgvArticulos.Columns["urlImage"].Visible = false;
+            
             dgvArticulos.Columns["codigo"].Visible = false;
             dgvArticulos.Columns["Id"].Visible = false;
             dgvArticulos.Columns["precioxmenor"].Visible = false;
             dgvArticulos.Columns["precioxmayor"].Visible = false;
+            dgvArticulos.Columns["precioxcaja"].Visible = false;
 
             //RESTRINGO COLUMNAS PARA NO EDITARLAS
             dgvArticulos.Columns["nombre"].ReadOnly = true;
             dgvArticulos.Columns["categoria"].ReadOnly = true;
             dgvArticulos.Columns["marca"].ReadOnly = true;
-           
+            dgvArticulos.Columns["precioMayor"].ReadOnly = true;
         }
 
         private bool soloNumeros(String cadena)
@@ -174,10 +180,16 @@ namespace control_de_stocks
             {
                 a.precioxmenor = nuemero;
             }
-            else
+            else if (columna == 6)
             {
-                a.precioxmayor = nuemero;
+                a.precioxcaja = nuemero;
+
+                if (double.Parse(a.cantidadxmayor) != 0)
+                    a.precioxmayor = nuemero / double.Parse(a.cantidadxmayor);
+                else
+                    a.precioxmayor = 0;
             }
+            
         }
 //--------------------------------------------------------------------------------------------------------------
 
@@ -392,6 +404,10 @@ namespace control_de_stocks
                 }
                 //aca le seteo a la CELDA correspondiente(que es de tipo String)el "valor" que va a contener y transformo  Double en un String de tipo moneda para que se vea en el dgvArticulos
                 celdaActual.Value = resultadoNumerico.ToString("C0", new System.Globalization.CultureInfo("en-US"));
+               
+                // modifica la columna 8 (precioxmayor) cuando termino de editar la columna 6 : le pone el precio automatico
+                if (numeroColumna == 6)
+                    dgvArticulos.Rows[e.RowIndex].Cells[8].Value = seleccionado.precioxmayor.ToString("C0", new System.Globalization.CultureInfo("en-US"));
             }
 
           
@@ -661,22 +677,49 @@ namespace control_de_stocks
             paginaHtml_texto = paginaHtml_texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
 
             string filas = string.Empty;
-
+            string sepa = string.Empty;
+            string sepaMarca = string.Empty;
             foreach (DataGridViewRow row in dgvArticulos.Rows)
             {
-                if (row.Index < dgvArticulos.Rows.Count - 1)
+                if (!(row.Cells["categoria"].Value.ToString().Equals(sepa) && row.Cells["marca"].Value.ToString().Equals(sepaMarca))) //SEPARADOR DE PDF POR CATEGORIA
+                                                                             //CON FONDO GRIS
+                {
+                    sepa = row.Cells["categoria"].Value.ToString();
+                    sepaMarca = row.Cells["marca"].Value.ToString();
+
+
+                    filas += "<tr>";
+                    filas += "<td class='section-separator' colspan='6'> " + sepa +" "+sepaMarca+ " </td>";
+                    filas += "</tr>";
+
+                    
+                    filas += "<tr style='background-color:#D9D9D9'>";
+                    filas += "<th> NOMBRE </th>";
+                    filas += "<th> PRECIO CAJA/BOLSON </th>";
+                    filas += "<th> PRECIO MAYOR </th>";
+                    filas += "<th class='cant' >CANTIDAD</th>";
+                    filas += "</tr>";
+                    
+                }
+                if (row.Index <= dgvArticulos.Rows.Count - 1)
                 {
                     filas += "<tr>";
                     filas += "<td>" + row.Cells["nombre"].Value.ToString() + "</td>";
-                    filas += "<td>" + row.Cells["precioxmenor"].Value.ToString() + "</td>";
-                    filas += "<td>" + row.Cells["precioMenor"].Value.ToString() + "</td>";
+                    filas += "<td>" + row.Cells["precioCaja"].Value.ToString() + "</td>";
+                    filas += "<td>" + row.Cells["precioMayor"].Value.ToString() + "</td>";
+                    filas += "<td>" + row.Cells["cantidadxmayor"].Value.ToString() + "</td>";
                     //filas += "<td>" + row.Cells["Importe"].Value.ToString() + "</td>";
                     filas += "</tr>";
                     //total += decimal.Parse(row.Cells["Importe"].Value.ToString());
                 }
+                
+                
             }
             paginaHtml_texto = paginaHtml_texto.Replace("@FILAS", filas);
-            
+           
+
+
+
 
 
             //-----------------------------------------------------------------
